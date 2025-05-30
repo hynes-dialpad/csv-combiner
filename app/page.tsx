@@ -10,6 +10,7 @@ import { Badge } from "@/components/ui/badge"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Upload, Download, X, FileText, AlertCircle } from "lucide-react"
 import { Alert, AlertDescription } from "@/components/ui/alert"
+import { ThemeToggle } from "@/components/theme-toggle"
 
 interface UploadedFile {
   file: File
@@ -202,6 +203,9 @@ export default function CSVCombiner() {
 
   return (
     <div className="container mx-auto p-6 max-w-6xl">
+      <div className="absolute top-4 right-4">
+        <ThemeToggle />
+      </div>
       <div className="space-y-6">
         <div className="text-center">
           <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">

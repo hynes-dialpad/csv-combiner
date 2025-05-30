@@ -2,6 +2,9 @@ import type React from "react"
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
+import { Analytics } from "@vercel/analytics/react"
+import { ThemeProvider } from "@/components/theme-provider"
+import { Suspense } from "react"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -19,9 +22,14 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
-        <main className="min-h-screen bg-background">{children}</main>
+        <Suspense fallback={<div>Loading...</div>}>
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+            <main className="min-h-screen bg-background">{children}</main>
+            <Analytics />
+          </ThemeProvider>
+        </Suspense>
       </body>
     </html>
   )
